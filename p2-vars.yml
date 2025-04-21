@@ -1,0 +1,20 @@
+---
+- name: Test connection my server
+  become: yes
+  hosts: tru
+
+  vars_files:
+  - vars1.yml
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+    - name: Ping my server
+      ping: 
+#------------------------------------------------
+    - name: Print varible
+      debug: 
+        var: x
+      
+
