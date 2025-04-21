@@ -21,7 +21,8 @@
         msg: "text {{y}}"
 
     - debug:
-        var: ansible_distribution
+        var: ansible_all_ipv4_addresses
+
 
 
       
