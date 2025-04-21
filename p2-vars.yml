@@ -16,5 +16,8 @@
     - name: Print varible
       debug: 
         var: x
+    
+    - debug:
+        msg: "text {{y}}"
       
 
