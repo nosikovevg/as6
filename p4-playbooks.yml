@@ -1,0 +1,10 @@
+---
+- name: Test connection my server
+  become: yes
+  gather_facts: no
+  hosts: tru
+  include: s1-vars.yml
+  
+
+  tasks:
+  

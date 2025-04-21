@@ -2,18 +2,20 @@
 - name: Test connection my server
   become: yes
   hosts: tru
-
+#------------------------------------------------s1
   vars_files:
   - vars1.yml
   - vars.yml
-
+#------------------------------------------------
   tasks:
+#------------------------------------------------s2
     - name: Update apt cache
       apt:
         update_cache: yes
     - name: Ping my server
       ping: 
 #------------------------------------------------
+#------------------------------------------------s3
     - name: Print varible
       debug: 
         var: x
@@ -23,7 +25,7 @@
 
     - debug:
         var: ansible_all_ipv4_addresses
-
+#------------------------------------------------
 
 
       

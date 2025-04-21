@@ -1,15 +1,5 @@
 ---
-- name: Test connection my server
-  become: yes
-  gather_facts: no
-  hosts: tru
-#------------------------------------------------s1
-  vars_files:
-  - vars1.yml
-  - vars.yml
-#------------------------------------------------
 #------------------------------------------------s3
-  tasks:
     - name: Print varible
       debug: 
         var: x
