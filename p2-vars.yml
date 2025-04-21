@@ -5,6 +5,7 @@
 
   vars_files:
   - vars1.yml
+  - vars.yml
 
   tasks:
     - name: Update apt cache
