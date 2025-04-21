@@ -1,0 +1,25 @@
+---
+- name: Test connection my server
+  become: yes
+  gather_facts: no
+  hosts: tru
+
+  vars_files:
+  - vars1.yml
+  - vars.yml
+
+  tasks:
+    - name: Print varible
+      debug: 
+        var: x
+    
+    - debug:
+        msg: "text {{y}}"
+
+    - debug:
+        var: ansible_all_ipv4_addresses
+
+
+
+      
+
