@@ -7,4 +7,9 @@
   
 
   tasks:
-  
+     - name: Print varible
+       include: s2-update-apt.yml
+
+ 
+        
+    
