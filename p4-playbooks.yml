@@ -11,7 +11,7 @@
 
   tasks:
      - name: Print varible
-       include: s2-update-apt.yml
+       include_tasks: s2-update-apt.yml
 
  
         
