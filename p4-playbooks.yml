@@ -1,5 +1,5 @@
 ---
-- name: Test connection my server
+- name: Test with include files
   become: yes
   gather_facts: no
   hosts: tru
@@ -10,9 +10,11 @@
   
 
   tasks:
-     - name: Print varible
+     - name: update apt and ping
        include_tasks: s2-update-apt.yml
 
+     - name: debug vars
+       include_tasks: s3-vars-debug.yml
  
         
     
