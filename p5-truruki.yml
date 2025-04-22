@@ -8,9 +8,9 @@
   - vars.yml
 
   tasks:
-#------------------------------------------------s4
+#------------------------------------------------s5
      - name: default nginx 
-       include_tasks: s4-nginx.yml
+       include_tasks: s5-nginx.yml
 
         
     
