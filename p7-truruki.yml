@@ -1,0 +1,27 @@
+---
+- name: truruki
+  become: yes
+  hosts: tru
+#------------------------------------------------s1
+  vars_files:
+  - vars1.yml
+  - vars.yml
+
+  tasks:
+#------------------------------------------------s5
+     - name: default nginx 
+       include_tasks: s5-nginx.yml
+#------------------------------------------------s6
+     - name: install mysql 
+       include_tasks: s6-mysql.yml
+#------------------------------------------------s7
+     - name: dump mysql 
+       include_tasks: s7-mysql-bd-tab-dump.yml
+
+
+#--------------------------------------------------    
+  handlers:
+    - name: Restart mysql
+      service:
+        name: mysql
+        state: restarted
