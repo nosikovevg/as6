@@ -49,7 +49,7 @@
 
     - name: Создание challenge-файла на веб-сервере
       copy:
-        dest: "/var/www/trur{{ acme_challenge['challenge_data']['http-01'][domain]['resource'] }}"
+        dest: "/var/www/trur/{{ acme_challenge['challenge_data']['http-01'][domain]['resource'] }}"
         content: "{{ acme_challenge['challenge_data']['http-01'][domain]['resource_value'] }}"
       when: acme_challenge['challenge_data'] is defined
 
