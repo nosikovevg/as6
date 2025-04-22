@@ -24,7 +24,7 @@
      - name: truruki 
        include_tasks: s9-truruki.yml
 #------------------------------------------------s10
-     - name: truruki 
+     - name: phpmyadmin 
        include_tasks: s10-phpmyadmin.yml
 
 
