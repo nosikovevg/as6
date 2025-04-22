@@ -60,10 +60,10 @@
     
     - name: Разместить challenge-файл на веб-сервере      
       copy:
-        content: "{{ acme_challenge.challenge_data[domain]['http-01']['resource_value'] }}"
-        dest: "{{ webroot }}/{{ acme_challenge.challenge_data[domain]['http-01']['resource'] }}"
+        content: "{{ acme_challenge['challenge_data'][domain]['http-01']['resource_value'] }}"
+        dest: "{{ webroot }}/{{ acme_challenge['challenge_data'][domain]['http-01']['resource'] }}"
         mode: '0644'
-
+      when: acme_challenge['challenge_data'] is defined
 
     - name: Завершение получения сертификата (фаза 2)
       community.crypto.acme_certificate:
