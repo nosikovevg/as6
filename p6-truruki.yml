@@ -11,6 +11,13 @@
 #------------------------------------------------s5
      - name: default nginx 
        include_tasks: s5-nginx.yml
-
+#------------------------------------------------s6
+     - name: install mysql 
+       include_tasks: s6-mysql.yml
         
-    
+#--------------------------------------------------    
+  handlers:
+    - name: Restart mysql
+      service:
+        name: mysql
+        state: restarted
