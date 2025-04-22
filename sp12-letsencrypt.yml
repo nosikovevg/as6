@@ -14,6 +14,11 @@
 
 
   tasks:
+    - name: Create a directory if it does not exist
+      file:
+        path: /etc/letsencrypt
+        state: directory
+        mode: 0600
          
     - name: Генерация приватного ключа для домена
       community.crypto.openssl_privatekey:
