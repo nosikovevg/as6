@@ -43,6 +43,7 @@
         challenge: http-01
         acme_directory: "https://acme-v02.api.letsencrypt.org/directory"
         terms_agreed: true
+        acme_version: 2
         contact:
           - "mailto:{{ email }}"
       register: acme_challenge
