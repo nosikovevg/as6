@@ -49,8 +49,9 @@
 
     - name: Создание challenge-файла на веб-сервере
       copy:
-        dest: "/var/www/trur/{{ acme_challenge['challenge_data']['http-01'][domain]['resource'] }}"
-        content: "{{ acme_challenge['challenge_data']['http-01'][domain]['resource_value'] }}"
+        dest: "/var/www/trur/{{ acme_challenge['challenge_data']['http-01'][item]['resource'] }}"
+        content: "{{ acme_challenge['challenge_data']['http-01'][item]['resource_value'] }}"
+      loop: "{{ acme_challenge['challenge_data']['http-01'] | list }}"
       when: acme_challenge['challenge_data'] is defined
 
     - name: Завершение получения сертификата (фаза 2)
