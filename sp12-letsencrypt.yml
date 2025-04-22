@@ -48,11 +48,11 @@
         account_email: "{{ email }}"
       register: acme_challenge
 
-    - name: Создать директорию для challenge-файлов
-      file:
-        path: "{{ webroot }}"
-        state: directory
-        mode: '0755'
+#    - name: Создать директорию для challenge-файлов
+#      file:
+#        path: "{{ webroot }}"
+#        state: directory
+#        mode: '0755'
     
     - name: Разместить challenge-файл на веб-сервере      
       copy:
