@@ -55,6 +55,9 @@
         data: {}
       register: acme_challenge
     
+    - debug:
+        var: acme_challenge
+    
     - name: Разместить challenge-файл на веб-сервере      
       copy:
         content: "{{ acme_challenge.challenge_data[domain]['http-01']['resource_value'] }}"
