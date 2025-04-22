@@ -11,7 +11,7 @@
     csr_path: /etc/letsencrypt/{{ domain }}.csr
     cert_path: /etc/letsencrypt/{{ domain }}.crt
     fullchain_path: /etc/letsencrypt/{{ domain }}-fullchain.crt
-    webroot: /var/www/trur/.well-known/acme-challenge
+    webroot: /var/www/trur/
 
 
   tasks:
