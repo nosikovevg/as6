@@ -52,6 +52,7 @@
         terms_agreed: true
         acme_version: 2
         account_email: "{{ email }}"
+        data: {}
       register: acme_challenge
     
     - name: Разместить challenge-файл на веб-сервере      
