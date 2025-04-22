@@ -1,0 +1,16 @@
+---
+- name: Test with include files
+  become: yes
+  hosts: tru
+#------------------------------------------------s1
+  vars_files:
+  - vars1.yml
+  - vars.yml
+
+  tasks:
+#------------------------------------------------s4
+     - name: default nginx 
+       include_tasks: s4-nginx.yml
+
+        
+    

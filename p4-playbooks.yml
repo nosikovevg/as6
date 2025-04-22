@@ -3,16 +3,16 @@
   become: yes
   gather_facts: no
   hosts: tru
-  #------------------------------------------------s1
+#------------------------------------------------s1
   vars_files:
   - vars1.yml
   - vars.yml
-  
 
   tasks:
+#------------------------------------------------s2
      - name: update apt and ping
        include_tasks: s2-update-apt.yml
-
+#------------------------------------------------s3
      - name: debug vars
        include_tasks: s3-vars-debug.yml
  
