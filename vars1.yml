@@ -2,7 +2,9 @@
 x: wow!
 y: blablabla
 z: 2025
-
+domain: "truruki.ru"
+email: "89134038088@mail.ru"
+webroot_path: "/var/www/trur"
 
 
 
