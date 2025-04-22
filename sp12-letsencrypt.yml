@@ -6,7 +6,7 @@
   vars:
     domain: truruki.ru
     email: 89134038088@mail.ru
-    acme_account_key: /etc/letsencrypt/account.key
+    account_key_path: /etc/letsencrypt/account.key
     private_key_path: /etc/letsencrypt/{{ domain }}.key
     csr_path: /etc/letsencrypt/{{ domain }}.csr
     cert_path: /etc/letsencrypt/{{ domain }}.crt
@@ -27,6 +27,13 @@
         size: 4096
         type: RSA
 
+    - name: Создать ключ аккаунта, если его нет
+      command: openssl genrsa 4096
+      args:
+        creates: "{{ account_key_path }}"
+      register: account_key_gen
+      changed_when: account_key_gen.rc == 0
+
     - name: Генерация CSR для домена
       community.crypto.openssl_csr:
         path: "{{ csr_path }}"
@@ -37,7 +44,7 @@
 
     - name: Получение challenge от Let's Encrypt (фаза 1)
       community.crypto.acme_certificate:
-        account_key_src: "{{ private_key_path }}"
+        account_key_src: "{{ account_key_path }}"
         csr: "{{ csr_path }}"
         dest: "{{ cert_path }}"
         fullchain_dest: "{{ fullchain_path }}"
@@ -69,7 +76,7 @@
 
     - name: Завершение получения сертификата (фаза 2)
       community.crypto.acme_certificate:
-        account_key_src: "{{ private_key_path }}"
+        account_key_src: "{{ account_key_path }}"
         csr: "{{ csr_path }}"
         dest: "{{ cert_path }}"
         fullchain_dest: "{{ fullchain_path }}"
@@ -79,5 +86,8 @@
         acme_version: 2
         account_email: "{{ email }}"
         data: "{{ acme_challenge }}"
+      register: cert_result
       when: acme_challenge['challenge_data'] is defined
     
+    - debug:
+        var: cert_result
