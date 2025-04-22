@@ -1,7 +1,7 @@
 ---
 - name: Установка SSL-сертификата с Let’s Encrypt
   become: yes
-  hosts: tr
+  hosts: tru
 
   vars:
     domain: truruki.ru
