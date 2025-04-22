@@ -11,6 +11,7 @@
     csr_path: /etc/letsencrypt/{{ domain }}.csr
     cert_path: /etc/letsencrypt/{{ domain }}.crt
     fullchain_path: /etc/letsencrypt/{{ domain }}-fullchain.crt
+    webroot: /var/www/trur/.well-known/acme-challenge
 
 
   tasks:
@@ -47,12 +48,24 @@
         account_email: "{{ email }}"
       register: acme_challenge
 
-    - name: Создание challenge-файла на веб-сервере
+    - name: Создать директорию для challenge-файлов
+      file:
+        path: "{{ webroot }}"
+        state: directory
+        mode: '0755'
+    
+    - name: Разместить challenge-файл на веб-сервере      
       copy:
-        dest: "/var/www/trur/{{ acme_challenge['challenge_data']['http-01'][item]['resource'] }}"
-        content: "{{ acme_challenge['challenge_data']['http-01'][item]['resource_value'] }}"
-      loop: "{{ acme_challenge['challenge_data']['http-01'] | list }}"
-      when: acme_challenge['challenge_data'] is defined
+        content: "{{ acme_challenge.challenge_data[domain]['http-01']['resource_value'] }}"
+        dest: "{{ webroot }}/{{ acme_challenge.challenge_data[domain]['http-01']['resource'] }}"
+        mode: '0644'
+
+#    - name: Создание challenge-файла на веб-сервере
+#      copy:
+#        dest: "/var/www/trur/{{ acme_challenge['challenge_data']['http-01'][item]['resource'] }}"
+#        content: "{{ acme_challenge['challenge_data']['http-01'][item]['resource_value'] }}"
+#      loop: "{{ acme_challenge['challenge_data']['http-01'] | list }}"
+#      when: acme_challenge['challenge_data'] is defined
 
     - name: Завершение получения сертификата (фаза 2)
       community.crypto.acme_certificate:
