@@ -37,7 +37,7 @@
     - name: Получение challenge от Let's Encrypt (фаза 1)
       community.crypto.acme_certificate:
         account_key_src: "{{ acme_account_key }}"
-        csr_src: "{{ csr_path }}"
+        csr: "{{ csr_path }}"
         dest: "{{ cert_path }}"
         fullchain_dest: "{{ fullchain_path }}"
         challenge: http-01
