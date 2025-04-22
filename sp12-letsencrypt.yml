@@ -69,15 +69,15 @@
 
     - name: Завершение получения сертификата (фаза 2)
       community.crypto.acme_certificate:
-        account_key_src: "{{ acme_account_key }}"
-        csr_src: "{{ csr_path }}"
+        account_key_src: "{{ private_key_path }}"
+        csr: "{{ csr_path }}"
         dest: "{{ cert_path }}"
         fullchain_dest: "{{ fullchain_path }}"
         challenge: http-01
         acme_directory: "https://acme-v02.api.letsencrypt.org/directory"
         terms_agreed: true
-        contact:
-          - "mailto:{{ email }}"
+        acme_version: 2
+        account_email: "{{ email }}"
         data: "{{ acme_challenge }}"
       when: acme_challenge['challenge_data'] is defined
     
